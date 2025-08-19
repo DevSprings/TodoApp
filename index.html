@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Todo app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    /* .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); } */
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="light-theme">
+  <script src="script.js" defer></script>
+  <div class="container">
+    <header class="header">
+      <div class="header__logos">
+        <h2 class="header__logos--title">TODO</h2>
+        <img class="header__logos--theme" id="moon" src="/images/icon-moon.svg" alt="moon-icon">
+      </div>
+
+      <div class="header__addTask">
+        <div class="header__addTask--button">
+          <!-- mark goes here -->
+          <!-- <img id="check" src="./images/icon-check.svg" alt="" width="10px" height="7px"> -->
+        </div>
+        <input class="header__addTask--input" type="text" placeholder="Create a new todo...">
+      </div>
+    </header>
+
+    <main>
+      <div class="tasks">
+        <ul class="tasks__list">
+          <!-- tasks goes here -->
+        </ul>
+        <div class="tasks__records--status"></div>
+        <div class="tasks__records">
+          <p class="tasks__records--taskLeft grider"></p>
+          <p class="tasks__records--clearCompleted grider">Clear Completed</p>
+          <div class="tasks__records--filter grider">
+            <span class="tasks__records--all">All</span>
+            <span class="tasks__records--active">Active</span>
+            <span class="tasks__records--completed">Completed</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>Drag and drop to reorder list</p>
+    </footer>
+  </div>
+
+
+
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">DevSprings</a>.
+  </div>
+</body>
+
+</html>
