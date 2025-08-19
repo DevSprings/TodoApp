@@ -195,7 +195,7 @@ themeIcon.addEventListener('click', () => {
 
 ## Author
 
-- Website - [DevSpringz](https://www.your-site.com)
+- Website - [DevSpringz](https://github.com/DevSprings/)
 - Frontend Mentor - [@DevSprings](https://www.frontendmentor.io/profile/yourusername)
 - Twitter - [@yourusername](https://www.twitter.com/yourusername)
 
