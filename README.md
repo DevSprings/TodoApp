@@ -43,7 +43,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/todo-app-responsiveness-css-gridflex-intrinsic-design-bem-naming-tDww1jWJYl)
 - Live Site URL: [Add live site URL here](https://todomainapp7.netlify.app/)
 
 ## My process
@@ -196,7 +196,7 @@ themeIcon.addEventListener('click', () => {
 ## Author
 
 - Website - [DevSpringz](https://github.com/DevSprings/)
-- Frontend Mentor - [@DevSprings](https://www.frontendmentor.io/profile/yourusername)
+- Frontend Mentor - [@DevSprings](https://www.frontendmentor.io/profile/DevSprings)
 - Twitter - [@yourusername](https://www.twitter.com/yourusername)
 
 ## Acknowledgments
