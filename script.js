@@ -60,7 +60,6 @@ function loadAllTasks() { //Load all tasks.
   } else {
     tasks = [];
     saveTask()
-    alert("Empty task!")
   }
 }
 
@@ -439,3 +438,4 @@ displayCompleted.addEventListener('mouseout', () => {
     displayCompleted.style.color = 'var(--record-text)'
   }
 })
+
