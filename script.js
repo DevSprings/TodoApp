@@ -12,38 +12,7 @@ const displayActive = document.querySelector('.tasks__records--active');
 const displayCompleted = document.querySelector('.tasks__records--completed');
 const taskFilter = document.querySelector('.tasks__records--filter');
 
-let tasks = [
-  {
-    id: 1,
-    text: 'Complete online JavaScript course',
-    completed: true
-  },
-  {
-    id: 2,
-    text: 'Jog around the park 3x',
-    completed: false
-  },
-  {
-    id: 3,
-    text: '10 minutes reading',
-    completed: false
-  },
-  {
-    id: 4,
-    text: 'Sleep for 1 hour',
-    completed: false
-  },
-  {
-    id: 5,
-    text: 'Pick up groceries',
-    completed: false
-  },
-  {
-    id: 6,
-    text: 'Complete Todo App on Frontend Mentor',
-    completed: false
-  }
-];
+let tasks = [];
 let idCount = 0;
 let newTaskText = '';
 let draggedItem = null;
@@ -300,7 +269,6 @@ function getDragAfterElement(container, y) { //From AI, returns list item to dis
 
 
 // Event handlings...
-saveTask();
 loadAllTasks();
 
 window.addEventListener('resize', resizer);
@@ -469,5 +437,6 @@ displayCompleted.addEventListener('mouseout', () => {
     displayCompleted.style.color = 'var(--record-text)'
   }
 })
+
 
 
