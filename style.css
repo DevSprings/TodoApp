@@ -68,7 +68,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: no-repeat url(/images/bg-mobile-light.jpg);
+    background: no-repeat url(/images/bg-mobile-dark.jpg);
     background-position: top center;
     background-size: 100% 12.5rem;
     object-fit: cover;
@@ -81,7 +81,7 @@ body {
     color: var(--text);
 
     @media (width>600px) {
-        background-image: url(/images/bg-desktop-light.jpg);
+        background-image: url(/images/bg-desktop-dark.jpg);
     }
 
 }
@@ -373,4 +373,5 @@ footer p {
 
 
 }
+
 
