@@ -172,6 +172,13 @@ body {
 
 }
 
+#nullTask{
+    position: relative;
+    right: 0;
+    left: 0;
+    top: 18vh;
+}
+
 .tasks__list {
     margin-top: 1rem;
     margin-bottom: 0;
@@ -366,3 +373,4 @@ footer p {
 
 
 }
+
