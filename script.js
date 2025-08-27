@@ -419,6 +419,23 @@ addButton.addEventListener('mouseenter', () => {
 }
 )
 
+input.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    const text = input.value;
+    if (text) {
+      let checkElement = addButton.querySelector('#check');
+      if (!checkElement) {
+        const check = document.createElement('img');
+        check.id = 'check';
+        check.src = '/images/icon-check.svg';
+        addButton.style.background = 'radial-gradient(circle farthest-corner at top left, hsl(192, 100%, 67%), hsl(280, 87%, 65%))';
+        addButton.style.border = 'none';
+        addButton.appendChild(check);
+      }
+    }
+  }
+});
+
 input.addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
     const checkElement = addButton.querySelector('#check');
@@ -426,26 +443,6 @@ input.addEventListener('keyup', (event) => {
       addButton.removeChild(checkElement);
       addButton.style.background = 'none';
       addButton.style.border = '1px solid var(--button-border)';
-    }
-  }
-
-}
-)
-
-input.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    const text = input.value;
-    if (text) {
-      const checkElement = document.getElementById('check')
-      if (!checkElement) {
-        const check = document.createElement('img');
-        check.id = 'check';
-        check.src = '/images/icon-check.svg'
-        addButton.style.background = 'radial-gradient(circle farthest-corner at top left, hsl(192, 100%, 67%), hsl(280, 87%, 65%))';
-        addButton.style.border = 'none'
-        addButton.appendChild(check);
-      }
-
     }
   }
 }
@@ -540,5 +537,3 @@ displayCompleted.addEventListener('mouseout', () => {
     displayCompleted.style.color = 'var(--record-text)'
   }
 })
-
-
