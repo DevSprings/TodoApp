@@ -204,6 +204,15 @@ body {
     padding-inline: 0;
     min-height: 43vh;
     box-shadow: var(--task-shadow);
+    -webkit-user-select: text;
+    /* Safari */
+    -moz-user-select: text;
+    /* Firefox */
+    -ms-user-select: text;
+    /* Internet Explorer/Edge */
+    user-select: text;
+    /* Non-prefixed version */
+
 
     @media (height > 43vh) {
         max-height: 43vh;
@@ -248,14 +257,6 @@ body {
     word-break: normal;
     text-wrap: wrap;
     overflow-wrap: anywhere;
-     -webkit-user-select: text;
-    /* Safari */
-    -moz-user-select: text;
-    /* Firefox */
-    -ms-user-select: text;
-    /* Internet Explorer/Edge */
-    user-select: text;
-    /* Non-prefixed version */
 }
 
 .tasks__completed--button {
