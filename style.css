@@ -80,6 +80,15 @@ body {
     background-color: var(--body-bg);
     color: var(--text);
 
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version */
+
     @media (width>600px) {
         background-image: url(/images/bg-desktop-dark.jpg);
     }
@@ -101,6 +110,14 @@ body {
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 2rem;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version */
 }
 
 .header__logos--title {
@@ -172,12 +189,6 @@ body {
 
 }
 
-#nullTask{
-    position: relative;
-    right: 0;
-    left: 0;
-    top: 18vh;
-}
 
 .tasks__list {
     margin-top: 1rem;
@@ -187,6 +198,14 @@ body {
     padding-inline: 0;
     min-height: 43vh;
     box-shadow: var(--task-shadow);
+    -webkit-user-select: text;
+    /* Safari */
+    -moz-user-select: text;
+    /* Firefox */
+    -ms-user-select: text;
+    /* Internet Explorer/Edge */
+    user-select: text;
+    /* Non-prefixed version */
 
 
     @media (height > 43vh) {
@@ -204,6 +223,13 @@ body {
         }
     }
 
+}
+
+#nullTask {
+    position: relative;
+    right: 0;
+    left: 0;
+    top: 18vh;
 }
 
 .tasks__list--item {
@@ -364,14 +390,11 @@ footer p {
 .attribution {
     margin-top: 2rem;
     text-align: center;
-    font-size: var(--fs-300);    
+    font-size: var(--fs-300);
     color: var(--strike-text);
 }
 
 .attribution a {
     color: var(--strike-text);
 
-
 }
-
-
