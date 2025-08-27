@@ -293,6 +293,10 @@ loadAllTasks();
 
 window.addEventListener('resize', resizer);
 
+window.onload = function() {
+  input.focus();
+};
+
 input.addEventListener('keyup', (event) => {//Allow users to input task with the "enter key"
   if (event.key === 'Enter' && input) {
     addTask();
@@ -537,4 +541,5 @@ displayCompleted.addEventListener('mouseout', () => {
     displayCompleted.style.color = 'var(--record-text)'
   }
 })
+
 
