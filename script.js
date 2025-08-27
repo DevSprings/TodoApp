@@ -26,7 +26,7 @@ const taskLists = document.querySelector(".tasks__list");
     if (!nullStatement) {
       const newNullStatement = document.createElement('p');
       newNullStatement.id = 'nullTask';
-      newNullStatement.textContent = 'No Task!';
+      newNullStatement.textContent = 'Empty!';
       taskLists.appendChild(newNullStatement);
     }
   } else {
@@ -540,3 +540,4 @@ displayCompleted.addEventListener('mouseout', () => {
     displayCompleted.style.color = 'var(--record-text)'
   }
 })
+
