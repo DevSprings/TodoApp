@@ -423,7 +423,7 @@ input.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     const text = input.value;
     if (text) {
-      let checkElement = addButton.querySelector('#check');
+      const checkElement = addButton.querySelector('#check');
       if (!checkElement) {
         const check = document.createElement('img');
         check.id = 'check';
@@ -537,3 +537,4 @@ displayCompleted.addEventListener('mouseout', () => {
     displayCompleted.style.color = 'var(--record-text)'
   }
 })
+
