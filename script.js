@@ -18,6 +18,23 @@ let newTaskText = '';
 let draggedItem = null;
 
 // Functions ...
+function updateEmptyTaskMessage() {
+const taskLists = document.querySelector(".tasks__list");
+  const taskItems = taskLists.querySelectorAll('.tasks__list--item');
+  const nullStatement = document.getElementById('nullTask');
+  if (taskItems.length === 0) {
+    if (!nullStatement) {
+      const newNullStatement = document.createElement('p');
+      newNullStatement.id = 'nullTask';
+      newNullStatement.textContent = 'No Task!';
+      taskLists.appendChild(newNullStatement);
+    }
+  } else {
+    if (nullStatement) {
+      taskLists.removeChild(nullStatement);
+    }
+  }
+}
 
 function resizer() { // Change background according to theme.
   if (themeIcon.id === 'sun') {
@@ -59,7 +76,7 @@ function loadAllTasks() { //Load all tasks.
     displayCompleted.style.color = 'var(--record-text)'
   } else {
     tasks = [];
-    saveTask()
+    saveTask();  
   }
 }
 
@@ -74,7 +91,6 @@ function loadCompletedTasks() { //Load only completed tasks.
       displayAll.style.color = 'var(--record-text)'
       displayActive.style.color = 'var(--record-text)'
       displayCompleted.style.color = 'var(--Blue-500)'
-
     }
   }
 }
@@ -90,8 +106,7 @@ function loadActiveTasks() { //Load only not completed tasks
       displayAll.style.color = 'var(--record-text)'
       displayActive.style.color = 'var(--Blue-500)'
       displayCompleted.style.color = 'var(--record-text)'
-    }
-
+    } 
   }
 }
 
@@ -101,6 +116,7 @@ function deleteTask(taskObject) { //Delete a task permanently from app.
   removeTask(taskObject);
   saveTask();
   updateTaskLeft();
+  updateEmptyTaskMessage();
 }
 
 function deleteCompleted() { //Delete all completed tasks permanently from app.
@@ -119,6 +135,7 @@ function removeTask(taskObject) { //Remove a task from the UI.
   if (taskLists.contains(list)) {
     taskLists.removeChild(list);
   }
+  updateEmptyTaskMessage();
 }
 
 function removeAll() { //Remove all tasks from the UI.
@@ -127,6 +144,7 @@ function removeAll() { //Remove all tasks from the UI.
     tasks = JSON.parse(storeTasks)
     tasks.map((taskObject) => removeTask(taskObject));
   }
+  updateEmptyTaskMessage();
 }
 
 function addTask() { //Add a new task to the app.
@@ -251,6 +269,7 @@ function createTask(taskObject) { //Create a new task on UI.
     }
   }
   )
+  updateEmptyTaskMessage();
 }
 
 function getDragAfterElement(container, y) { //From AI, returns list item to display upward or downward...
@@ -269,9 +288,16 @@ function getDragAfterElement(container, y) { //From AI, returns list item to dis
 
 
 // Event handlings...
+
 loadAllTasks();
 
 window.addEventListener('resize', resizer);
+
+input.addEventListener('keyup', (event) => {//Allow users to input task with the "enter key"
+  if (event.key === 'Enter' && input) {
+    addTask();
+  }
+})
 
 addButton.addEventListener("click", addTask);
 
@@ -312,6 +338,50 @@ taskLists.addEventListener('dragover', (event) => {
   }
 });
 
+//Touches events are from AI
+taskLists.addEventListener('touchstart', (event) => {
+  // Set the dragged element as the current target for touch
+  const touch = event.touches[0];
+  const target = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (target && target.classList.contains('tasks__list--item')) {
+    draggedItem = target;
+    setTimeout(() => target.style.display = "none", 0);
+  }
+});
+
+taskLists.addEventListener('touchend', (event) => {
+  // Reset the display and remove the class for touch
+  if (draggedItem) {
+    draggedItem.style.display = "flex";
+    draggedItem = null;
+    // Update the local storage with the new order
+    const newTasksOrder = Array.from(taskLists.children).map(item => {
+      const id = parseInt(item.id);
+      return tasks.find(task => task.id === id);
+    });
+    tasks = newTasksOrder;
+    saveTask();
+  }
+});
+
+taskLists.addEventListener('touchmove', (event) => {
+  event.preventDefault();
+  const touch = event.touches[0];
+  const afterElement = getDragAfterElement(taskLists, touch.clientY);
+  const currentDraggedItem = document.querySelector('.tasks__list--item[style="display: none;"]');
+  if (afterElement == null) {
+    if (currentDraggedItem) {
+      taskLists.appendChild(currentDraggedItem);
+    }
+  } else {
+    if (currentDraggedItem) {
+      taskLists.insertBefore(currentDraggedItem, afterElement);
+    }
+  }
+});
+
+
+
 addButton.addEventListener('mousedown', () => {
   const text = input.value
   if (text) {
@@ -326,18 +396,12 @@ addButton.addEventListener('mousedown', () => {
 )
 
 addButton.addEventListener('mouseup', () => {
-  if (addButton.hasChildNodes()) {
-    addButton.removeChild(check);
+  const checkElement = addButton.querySelector('#check');
+  if (checkElement) {
+    addButton.removeChild(checkElement);
     addButton.style.background = 'none';
+    addButton.style.border = '1px solid var(--button-border)';
   }
-
-}
-)
-
-addButton.addEventListener('mouseenter', () => {
-  addButton.style.border = '2px solid transparent';
-  addButton.style.background = 'linear-gradient(var(--input-bg), var(--input-bg)) padding-box, linear-gradient(45deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box';
-  addButton.style.borderRadius = '100%';
 }
 )
 
@@ -348,30 +412,69 @@ addButton.addEventListener('mouseout', () => {
 }
 )
 
+addButton.addEventListener('mouseenter', () => {
+  addButton.style.border = '2px solid transparent';
+  addButton.style.background = 'linear-gradient(var(--input-bg), var(--input-bg)) padding-box, linear-gradient(45deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box';
+  addButton.style.borderRadius = '100%';
+}
+)
+
+input.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    const checkElement = addButton.querySelector('#check');
+    if (checkElement) {
+      addButton.removeChild(checkElement);
+      addButton.style.background = 'none';
+      addButton.style.border = '1px solid var(--button-border)';
+    }
+  }
+
+}
+)
+
+input.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    const text = input.value;
+    if (text) {
+      const checkElement = document.getElementById('check')
+      if (!checkElement) {
+        const check = document.createElement('img');
+        check.id = 'check';
+        check.src = '/images/icon-check.svg'
+        addButton.style.background = 'radial-gradient(circle farthest-corner at top left, hsl(192, 100%, 67%), hsl(280, 87%, 65%))';
+        addButton.style.border = 'none'
+        addButton.appendChild(check);
+      }
+
+    }
+  }
+}
+)
+
 clearCompleted.addEventListener('click', () => {
   deleteCompleted();
   loadAllTasks();
 }
 );
 
-displayAll.addEventListener('click', (e) => {
-  if (e.target.className === 'tasks__records--all') {
+displayAll.addEventListener('click', (event) => {
+  if (event.target.className === 'tasks__records--all') {
     removeAll();
     loadAllTasks();
   }
 }
 )
 
-displayActive.addEventListener('click', (e) => {
-  if (e.target.className === 'tasks__records--active') {
+displayActive.addEventListener('click', (event) => {
+  if (event.target.className === 'tasks__records--active') {
     loadActiveTasks()
   }
   taskleft.style.minHeight = '3rem'
 }
 )
 
-displayCompleted.addEventListener('click', (e) => {
-  if (e.target.className === 'tasks__records--completed') {
+displayCompleted.addEventListener('click', (event) => {
+  if (event.target.className === 'tasks__records--completed') {
     loadCompletedTasks()
   }
   taskleft.style.minHeight = '3rem'
@@ -437,6 +540,3 @@ displayCompleted.addEventListener('mouseout', () => {
     displayCompleted.style.color = 'var(--record-text)'
   }
 })
-
-
-
