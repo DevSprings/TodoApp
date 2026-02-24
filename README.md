@@ -43,8 +43,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/todo-app-responsiveness-css-gridflex-intrinsic-design-bem-naming-tDww1jWJYl)
-- Live Site URL: [Add live site URL here](https://todomainapp7.netlify.app/)
+- Live Site URL: [Todo](https://todomainapp7.netlify.app/)
 
 ## My process
 
